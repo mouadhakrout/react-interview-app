@@ -9,6 +9,7 @@
     "lint": "eslint app test",
     "test": "cross-env NODE_ENV=test nyc mocha",
     "watch:test": "mocha --watch --compilers js:babel-register",
+    "postinstall": "npm install --prefix server", 
     "start": "serve -s build",
     "heroku-postbuild": "npm run build",
     "setup": "npm install && npm run validate",
