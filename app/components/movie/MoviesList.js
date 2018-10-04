@@ -10,7 +10,7 @@ import MoviesFilter from './MoviesFilter'
 class MoviesList extends Component{
   constructor(props) {
    super(props);
-   this.state = {movies: []};
+   this.state = {movies: [],  updated: false};
  }
  componentDidMount() {
     this.props.params.categoryName!==undefined?
@@ -18,6 +18,11 @@ class MoviesList extends Component{
     this.props.stuffActions.fetchMovies();
     this.props.stuffActions.fetchCategories();
  }
+ 
+removeMovie(movieId) { this.props.stuffActions.removeMovie(movieId);}
+pushLike(movieId) { this.props.stuffActions.pushLike(movieId);}
+pushDisLike(movieId) { this.props.stuffActions.pushDisLike(movieId);}
+filterMoviesByCategory(category) {this.props.stuffActions.filterMoviesByCategory(category);}
  render() {
      const settings = {
       dots: true,
@@ -56,20 +61,21 @@ class MoviesList extends Component{
         }
       ]
     };
-    const movies = this.props.moviesReducer.moviesReducer.movies;
-    const categories = this.props.moviesReducer.moviesReducer.categories;
+    const {movies, categories} = this.props.moviesReducer.moviesReducer;
     const moviesList = movies.map(movie => {
-      return(<div key={"movie"+ movie.id} ><Card movieId={movie.id} img={movie.img} title={movie.title} category={movie.category} likes={movie.likes} dislikes={movie.dislikes} /></div>)
+      return(<div key={"movie"+ movie.id} ><Card removeMovie ={() => this.removeMovie(movie.id)} pushLike={() => this.pushLike(movie.id)} pushDisLike={() => this.pushDisLike(movie.id)}  movieId={movie.id} img={movie.img} title={movie.title} category={movie.category} likes={movie.likes} dislikes={movie.dislikes} /></div>)
     });
       return(
       <div>
-       {movies.length>0 && categories.length>0 &&
+       {categories.length>0 &&
       <div>
-      <MoviesFilter categories={categories}/> 
+      <MoviesFilter filterMoviesByCategory={(category) => this.filterMoviesByCategory(category)} categories={categories}/> 
+      {movies.length>0 &&
       <div className="container"> 
       <Title color={"#ec008c"} content={"Liste des films :"} />
       <Slider ref={c => this.slider = c} {...settings}>{moviesList}</Slider>
       </div>
+      }
       </div>
       }
       </div>);

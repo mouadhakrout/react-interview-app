@@ -1,5 +1,5 @@
 import initialState from './initialState';
-import {FETCH_MOVIES,FETCH_MOVIES_BY_CATEGORIE, RECEIVE_MOVIES, FETCH_CATEGORIES, RECEIVE_CATEGORIES} from '../actions/actionTypes';
+import {FETCH_MOVIES,FETCH_MOVIES_BY_CATEGORIE, RECEIVE_MOVIES, FETCH_CATEGORIES, RECEIVE_CATEGORIES, RECEIVE_SELECTED_CATEGORY,RECEIVE_LIKED_MOVIE} from '../actions/actionTypes';
 
 const moviesReducer = function MoviesRequest(state = initialState, action) {
     let newState;
@@ -16,7 +16,6 @@ const moviesReducer = function MoviesRequest(state = initialState, action) {
             return Object.assign({}, state, {
                 movies: action.movies
               })
-
         case FETCH_CATEGORIES:
             console.log('FETCH_CATEGORIES Action')
             return action;
@@ -25,7 +24,7 @@ const moviesReducer = function MoviesRequest(state = initialState, action) {
             console.log('RECEIVE_CATEGORIES Action')
             return Object.assign({}, state, {
                 categories: action.categories
-            })
+            }) 
         default:
             return state;
     }

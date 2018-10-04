@@ -25,8 +25,9 @@ class Card extends Component{
                {this.props.category}
              <span className="glyphicon glyphicon-thumbs-up"></span>
                     <div className="btn-group">
-                      <button type="button" className="btn btn-sm btn-outline-secondary"><span className="fa fa-thumbs-up"></span>{this.props.likes}</button>
-                      <button type="button" className="btn btn-sm btn-outline-secondary"><span className="fa fa-thumbs-down"></span>{this.props.dislikes}</button>
+                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.props.pushLike}><span className="fa fa-thumbs-up"></span>{this.props.likes}</button>
+                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.props.pushDisLike}><span className="fa fa-thumbs-down"></span>{this.props.dislikes}</button>
+                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.props.removeMovie}><span className="fa fa-trash"></span></button>
                     </div>
             </div>
         </div>

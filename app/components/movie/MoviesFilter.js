@@ -12,7 +12,7 @@ class MoviesFilter extends Component{
   const categoriesList = this.props.categories.map(category => {
       return(
        <li  key={category} className="nav-item">
-          <a  className="nav-link" onClick={()=>this.props.stuffActions.filterMoviesByCategory(category)}>{category}</a>
+          <a  className="nav-link" onClick={()=>this.props.filterMoviesByCategory(category)}>{category}</a>
        </li>
           )
     });
